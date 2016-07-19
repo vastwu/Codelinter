@@ -31,7 +31,8 @@ module.exports = (req, res)->
         commitFiles = yield c.getContent yes
         for filePath in commitFiles
           # 单次commit可能涉及多个文件
-          changedFiles[filePath.new_path] = 1
+          if not filePath.deleted_file
+            changedFiles[filePath.new_path] = 1
 
       # to array
       fileArray = for path of changedFiles

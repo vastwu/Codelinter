@@ -6,16 +6,16 @@ gulp.task('deploy', function() {
   var deployList = [
     // 一般情况下该目录无需重复部署
     //'../node_modules/**',
-    '../lib/**',
-    '../app.js',
-    '../test/**',
-    '../processes.json'
+    'lib/**',
+    'app.js',
+    'test/**',
+    'processes.json'
   ]
   return gulp.src(deployList)
     .pipe(rsync({
       hostname: '10.103.16.10',
       username: 'wusen',
-      root: '../',
+      root: './',
       destination: '~/code/codelint'
     }))
 });
