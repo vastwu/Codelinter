@@ -1,0 +1,271 @@
+  font-family sans-serif
+  -ms-text-size-adjust 100%
+  -webkit-text-size-adjust 100%
+  -webkit-font-smoothing antialiased
+
+body, ul, ol
+  margin 0
+
+//Added
+body,button,input,select,textarea
+  font 14px/1.5 tahoma,arial,"Hiragino Sans GB","\5b8b\4f53"
+
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary
+  display block
+
+audio,
+canvas,
+progress,
+video
+  display inline-block
+  vertical-align baseline
+
+audio
+  &:not([controls])
+    display none
+    height 0
+
+[hidden],
+template
+  display none
+
+a
+  background-color transparent
+  text-decoration none
+
+a:active,
+a:hover,
+input:focus,
+button:focus,
+textarea:focus,
+select:focus
+  outline 0
+
+abbr[title]
+  border-bottom 1px dotted
+
+b,
+strong
+  font-weight bold
+
+dfn
+  font-style italic
+
+h1
+  font-size 2em
+  margin 0.67em 0
+
+mark
+  background #ff0
+  color #000
+
+small
+  font-size 80%
+
+sub,
+sup
+  font-size 75%
+  line-height 0
+  position relative
+  vertical-align baseline
+
+sup
+  top -0.5em
+
+sub
+  bottom -0.25em
+
+img
+  border 0
+
+svg
+  &:not(:root)
+    overflow hidden
+
+figure
+  margin 1em 40px
+
+hr
+  -moz-box-sizing content-box
+  box-sizing content-box
+  height 0
+
+pre
+  overflow auto
+
+code,
+kbd,
+pre,
+samp
+  font-family monospace, monospace
+  font-size 1em
+
+button,
+input,
+optgroup,
+select,
+textarea
+  color inherit
+  font inherit
+  margin 0
+  vertical-align top
+  resize none
+
+button
+  overflow visible
+
+button,
+select
+  text-transform none
+
+button,
+html input[type="button"], 
+input[type="reset"],
+input[type="submit"]
+  -webkit-appearance button
+  cursor pointer
+
+button[disabled],
+html input[disabled]
+  cursor default
+
+button::-moz-focus-inner,
+input::-moz-focus-inner
+  border 0
+  padding 0
+
+input
+  line-height normal
+
+input[type="checkbox"],
+input[type="radio"]
+  box-sizing border-box
+  padding 0
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button
+  height auto
+
+input[type="search"]
+  -webkit-appearance textfield
+  -moz-box-sizing content-box
+  -webkit-box-sizing content-box
+  box-sizing content-box
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration
+  -webkit-appearance none
+
+fieldset
+  border 1px solid #c0c0c0
+  margin 0 2px
+  padding 0.35em 0.625em 0.75em
+
+legend
+  border 0
+  padding 0
+
+textarea
+  overflow auto
+
+optgroup
+  font-weight bold
+
+table
+  border-collapse collapse
+  border-spacing 0
+  table-layout fixed
+
+td,
+th,
+ul,
+ol
+  padding 0
+
+.sweet-overlay
+  background-color rgba(0, 0, 0, 0.2)
+.sweet-alert h2
+  font-size 25px
+  margin 15px 0
+
+-transition(attr, time, important=false)
+  if important
+    -webkit-transition attr time !important
+    transition attr time !important
+  else
+    -webkit-transition attr time 
+    transition attr time
+
+
+.g-no-transition
+  -transition(all, 0ms, true)
+
+g-fadeOut(duration=300ms)
+  -transition(opacity, duration)
+
+g-transition()
+  -webkit-transition arguments
+  -moz-transition arguments
+  -ms-transition arguments
+  transition arguments
+
+// 通用颜色
+g-getTextColor(opacity = 1)
+  rgba(50, 50, 50, opacity)
+
+g-getBlue(opacity = 1)
+  rgba(26, 115, 193, opacity)
+
+g-getLessBlue(opacity = 1)
+  rgba(23, 157, 234, opacity)
+
+g-getWhite(opacity = 1)
+  rgba(255, 255, 255, opacity)
+
+g-getLessTextColor(opacity = 1)
+  rgba(135, 135, 135, opacity)
+
+g-getError(opacity = 1)
+  rgba(242, 87, 96, opacity)
+
+g-color-link()
+  rgba(0, 174, 239, 1)
+
+g-color-visited()
+  rgba(153, 153, 153, 1)
+g-color-success(opacity = 1)
+  rgba(45, 204, 146, opacity)
+g-color-error(opacity = 1)
+  rgba(247, 111, 115, opacity)
+
+g-autoPrefix(prop, args...)
+  -webkit-{prop} args
+  -moz-{prop} args
+  -ms-{prop} args
+  {prop} args
+
+
+@keyframes g-slideright
+{
+  from {
+    g-autoPrefix(transform, translateX(-30%))
+    opacity 0
+  }
+  to {
+    g-autoPrefix(transform, translateX(0px))
+    opacity 1
+  }
+}

@@ -1,0 +1,41 @@
+style.
+  .title p{
+    margin: 5px 0;
+  }
+  .error-list p{
+    margin: 5px 10px;
+  }
+  .error-color{
+    color: #a94442;
+  }
+  .warn-color{
+    color: #8a6d3b;
+  }
+  .good-color{
+    color: #3c763d; 
+  }
+
+body
+  h2 Hello
+
+  a(href="http://10.103.16.10:1234/commit/#{commitID}", target="_blank") [see full lint result here] 
+  .title
+    p commiter: #{owner}
+    p createtime: #{new Date(createtime * 1).toLocaleString()}
+    p productName: #{productName}
+    p branchName: #{branchName}
+    p CommitID: #{commitID}
+
+  each file, index in logs
+    p
+      h3 #{file.path}
+    .error-list
+      if file.count.notSupport
+        p Lint Result: Not Support ?
+      else if file.count.error === 0 && file.count.warning === 0
+        p.good-color Lint Result: Good !
+      if file.count.error > 0
+        p.error-color Lint Result: #{file.count.error} Errors
+      if file.count.warning > 0
+        p.warn-color Lint Result: #{file.count.warning} Warnings
+

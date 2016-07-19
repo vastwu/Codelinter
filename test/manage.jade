@@ -1,0 +1,151 @@
+doctype
+html
+  head
+    meta(http-equiv="Content-type", content='text/html; charset=utf-8')
+    meta(name="keywords", content="一点资讯，新闻资讯应用，头条，热点，科技，娱乐，健康，时尚，家居，教育，旅行，两性，美食，星座，阅读，个性化新闻")
+    meta(name="description", content="一点资讯是一款高度智能的新闻资讯应用，通过它你可以搜索并订阅任意关键词，它会自动帮你聚合整理并实时更新相关资讯，同时会智能分析你的兴趣爱好，为你推荐感兴趣的内容。看新闻资讯，一点就够了！")
+    meta(name="renderer", content="webkit")
+    title 一点号 - Yidianzixun.com
+    link(rel="stylesheet", href="/modules/common/cropper-0.10.0/cropper.min.css", type="text/css")
+    link(rel="stylesheet", href="/modules/common/sweetalert/sweetalert.css", type="text/css")
+    link(rel="stylesheet", href="/modules/common/jquery-ui/jquery-ui.css", type="text/css")
+    link(rel="stylesheet", href="/modules/common/jcrop/jquery.Jcrop.min.css", type="text/css")
+    link(rel="stylesheet", href="/modules/common/webuploader/webuploader.css", type="text/css")
+    link(rel="stylesheet", href="/modules/common/medium-editor/css/medium-editor.min.css", type="text/css")
+    link(rel="stylesheet", href="/modules/common/medium-editor/css/themes/default.min.css", type="text/css")
+    link(rel="stylesheet", href="/modules/common/medium-editor/plugins/css/insert.min.css", type="text/css")
+    link(rel="stylesheet", href="/modules/common/medium-editor/plugins/css/insert-frontend.min.css", type="text/css")
+    link(rel="stylesheet", href="/static/article-detail.css", type="text/css")
+
+    if is_debug
+      link(rel="stylesheet", href="/compiler/manage.styl", type="text/css")
+    else
+      style.
+        /*inject=/modules/mp/css/manage.css*/
+
+    script.
+      var _hmt = _hmt || [];
+      _hmt.push(['_setAccount', 'c7f0589e589d4e3ad8520795673cf5ec']);
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?c7f0589e589d4e3ad8520795673cf5ec";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+
+  body.manage-page
+    .ie-tips 为了更好地用户体验，我们将暂停对IE8及更低版本浏览器的支持，请您及时
+      a(href="http://windows.microsoft.com/zh-cn/internet-explorer/download-ie", target="_blank") 升级浏览器
+      | 或下载使用Chrome
+      a.close 我知道了
+    .header
+      .navigation
+        .logo
+        .nav-r
+          img.avatar(src="#{user && user.media_pic || '/images/modules/mp/avatar-default.png'}")
+          span.user-name
+            a(href='#SettingAccount') #{user && user.media_name || '一点资讯网友'}
+            //
+              if profile && profile.username
+                span (#{profile.username})
+          span |
+          a.sign-out(href="/signout") 退出账号
+          a(href="http://www.yidianzixun.com") 返回官网
+          .nav-message-container.new-message
+            a.message-icon
+              span.red-dot(style="display:none")
+            div.message-list.loading(style="display:none")
+              .clear-all 忽略全部
+              ul.list#navMessageList
+
+    .container
+      if slide === 1
+        .side
+          .menu.menu-home.current
+            .menu-item(data-action="Home") 首页
+            if userPermissions.writting === 1
+              .menu-write(data-action="Writting")
+          .menu.menu-article
+            if userPermissions.manageArticle === 1
+              .menu-label(data-action="ArticleManual/original") 文章管理
+              .menu-item(data-action="ArticleManual/original") 原创文章管理
+              .menu-item(data-action="ArticleManual/sync") 同步文章管理
+            else
+              .menu-label.disabled 文章管理
+              .menu-item.disabled 原创文章管理
+              .menu-item.disabled 同步文章管理
+          .menu.menu-stat
+            if userPermissions.statarticle === 1
+              .menu-label(data-action="StatArticle") 统计
+              .menu-item(data-action="StatArticle") 文章分析
+              .menu-item(data-action="StatSubscriber") 订阅用户分析
+              .menu-item(data-action="StatReader") 阅读用户分析
+            else
+              .menu-label.disabled 统计
+              .menu-item.disabled 文章分析
+
+          if userPermissions.settlement == 1 || userPermissions.settlement == 2
+            .menu.menu-settlement.apply
+              .menu-item(data-action="Settlement") 收益
+          else if userPermissions.settlement == 3
+            .menu.menu-settlement
+              .menu-label(data-action="Settlement") 收益
+              //.menu-item(data-action="StatArticle") 收益统计
+              .menu-item(data-action="Settlement") 结算中心
+          .menu.menu-msg
+            if userPermissions.msg === 1
+              .menu-item(data-action="Msg") 消息中心
+                span.red-dot.new-message(style="display:none;")
+            else
+              .menu-item.disabled 消息中心
+          if userPermissions.invite == 2
+            .menu.menu-invite
+              .menu-item(data-action="Invite") 圈子
+          else if userPermissions.invite == 1
+            .menu.menu-invite
+              .menu-item.disabled 圈子
+          .menu.menu-setting
+            if userPermissions.settingaccount === 1
+              .menu-label(data-action="SettingAccount") 设置
+              .menu-item(data-action="SettingAccount") 账号设置
+            else
+              .menu-label.disabled 设置
+              .menu-item.disabled 账号设置
+            if userPermissions.settingsync === 1
+              .menu-item(data-action="SettingSync") 系统文章同步管理
+            else
+              .menu-item.disabled 系统文章同步管理
+          .menu.menu-service
+            .menu-label(data-action="ServiceGuide") 客户服务
+            .menu-item(data-action="ServiceGuide") 用户守则
+            .menu-item(data-action="ServiceQa") 一点问答
+        
+        .main.loading
+      else
+        .main.no-side.loading
+
+    iframe#upload_iframe.upload-iframe(name="upload_iframe")
+    #dialog-msg.modal
+      .dialog
+        span.close
+        .body
+    #dialog-alert.dialog-alert
+
+    script#__val_.
+      window.mpuser = !{JSON.stringify(user)}
+      window.userprofile = !{JSON.stringify(profile)}
+      window.userPermissions = !{JSON.stringify(userPermissions)}
+
+
+    if is_debug
+      script(src="/modules/common/require_config.js")
+      script(src="/modules/common/require.js", data-main="/compiler/manage.coffee")
+      script.
+        window.$debug = 1;
+    else
+      script.
+        /*inject=/modules/mp/src/manage-min.js*/
+
+
+
+    

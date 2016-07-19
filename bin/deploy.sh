@@ -1,0 +1,2 @@
+#bin
+gulp deploy

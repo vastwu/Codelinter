@@ -1,0 +1,88 @@
+head
+  meta(charset="utf-8")
+  link(href="/common/bootstrap/css/bootstrap.css", type="text/css", rel="stylesheet")
+  link(href="/common/bootstrap/css/bootstrap-theme.css", type="text/css", rel="stylesheet")
+  script(src="/common/jquery-2.2.3.min.js")
+  script(src="/common/bootstrap/js/bootstrap.js")
+  style.
+    .value, .title{
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;   
+    }
+body
+  .page-header
+    h1 Codelint
+      small  Will hurt your feelings! (And help you code better)
+  .container-fluid
+    .row
+      .col-md-3
+        h2 项目信息
+        .list
+          .title 提交人: #{owner}
+          .title 提交时间: #{new Date(createtime * 1).toLocaleString()}
+          .title 项目: #{productName}
+          .title 分支: #{branchName}
+          .title CommitID:
+          .value 
+            a(href="https://git.yidian-inc.com:8021/webui/#{productName}/commit/#{commitID}") #{commitID}
+          .title 变更文件:
+          each file, index in logs
+            .value
+              a(href="#collapse_title_#{index}", title="#{file.path}") #{file.path}
+      .col-md-9
+        h2 检查结果
+        .panel-group#fileList
+          each file, index in logs
+            .panel.panel-default
+              .panel-heading
+                h3.panel-title(id="collapse_title_#{index}")
+                  if file.errors && file.errors.length > 0
+                    a(data-toggle="collapse", aria-expanded="false", href="#collapse_#{index}", data-parent='#fileList') #{file.path}
+                  else
+                    a #{file.path}
+                  | &nbsp;
+                  span(style="float:right;")
+                    if file.count.notSupport
+                      span.text-info
+                        span.glyphicon.glyphicon-question-sign
+                        span  Not Support!
+                    else if file.count.error === 0 && file.count.warning === 0
+                      span.text-success
+                        span.glyphicon.glyphicon-ok-sign
+                        span  Good!
+                    if file.count.error > 0
+                      | &nbsp;
+                      span.text-danger
+                        span.glyphicon.glyphicon-remove-sign 
+                        span  #{file.count.error}
+                    if file.count.warning > 0
+                      | &nbsp;
+                      span.text-warning
+                        span.glyphicon.glyphicon-exclamation-sign
+                        span  #{file.count.warning}
+              .panel-collapse.collapse.in(id="collapse_#{index}")
+                .panel-body
+                  p
+                    a(href="#{file.filePath}", target="_blank") [在git中查看文件]
+                  if file.errors
+                    each error, index in file.errors
+                      div
+                        if error.level === 'error' 
+                          .alert.alert-danger 
+                            span.glyphicon.glyphicon-remove-sign
+                            span  line #{error.lineNumber} #{error.message}
+                        else if error.level === 'warn' 
+                          .alert.alert-warning
+                            span.glyphicon.glyphicon-exclamation-sign
+                            span  line #{error.lineNumber} #{error.message}
+                        else
+                          .alert.alert-info
+                            span.glyphicon.glyphicon-warning-sign
+                            span  line #{error.lineNumber} #{error.message}
+
+                        if error.code
+                          pre #{error.code || ''}
+                        //
+                          blockquote !{error.description}
+  script(src="/commit.js")
