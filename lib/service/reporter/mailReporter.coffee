@@ -27,6 +27,7 @@ module.exports = (data, app, from, to)->
     mailOptions =
       from: from #'"WuSen" <wusen@yidian-inc.com>' # sender address 
       to: to # 'wusen@yidian-inc.com' # list of receivers 
+      cc: 'wusen@yidian-inc.com'
       subject: "CodeLint" #'Hello' # Subject line 
       #text: text # 'plain: Hello world' # plaintext body 
       html: html # '<b>html: Hello world</b>' # html body 
