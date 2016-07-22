@@ -47,7 +47,7 @@ module.exports = (req, res)->
         gitFile = branch.getFile filePath
         file = yield gitFile.getContent()
         code = file.content
-        errors = linter code, Path.extname(filePath)
+        errors = yield linter code, Path.extname(filePath)
         # errors可能为null,表示不支持的文件类型
         count =
           error: 0
