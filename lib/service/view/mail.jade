@@ -18,7 +18,8 @@ style.
 body
   h2 Hello
 
-  a(href="http://10.103.16.10:1234/commit/#{commitID}", target="_blank") [see full lint result here] 
+  h3
+    a(href="http://10.103.16.10:1234/commit/#{commitID}", target="_blank") [see full lint result here] 
   .title
     p commiter: #{owner}
     p createtime: #{new Date(createtime * 1).toLocaleString()}
