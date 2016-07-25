@@ -78,7 +78,9 @@ module.exports = (code, extname)->
           level: if err.type is 'warning' then 'warn' else 'error'
           message: "【#{err.rule.browsers}】：#{err.message}"
       when '.coffee'
-        errors = coffeelint.lint code
+        errors = coffeelint.lint code,
+          max_line_length:
+            value: 200
       when '.js'
         linter = jslinter.load()
         linted = jslinter.linter.doLint linter, code,
