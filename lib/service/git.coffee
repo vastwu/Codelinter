@@ -48,6 +48,11 @@ module.exports = (req, res)->
         file = yield gitFile.getContent()
         code = file.content
         errors = yield linter code, Path.extname(filePath)
+        outLimit = no
+        if errors.length > 100
+          # 只截取100个
+          errors = errors.slice 0, 100
+          outLimit = yes
         # errors可能为null,表示不支持的文件类型
         count =
           error: 0
@@ -79,6 +84,7 @@ module.exports = (req, res)->
         owner: owner
         createtime: Date.now()
         logs: lintedFiles
+        outLimit: outLimit
 
       mailReporter renderData, req.app, owner, owner
       mysqlReporter renderData

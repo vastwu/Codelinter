@@ -16,7 +16,7 @@ style.
   }
 
 body
-  h2 Hello
+  h2 Hello #{owner}
 
   h3
     a(href="http://10.103.16.10:1234/commit/#{commitID}", target="_blank") [see full lint result here] 
@@ -39,4 +39,5 @@ body
         p.error-color Lint Result: #{file.count.error} Errors
       if file.count.warning > 0
         p.warn-color Lint Result: #{file.count.warning} Warnings
-
+  if outLimit
+    P error count more than 100 !!!
