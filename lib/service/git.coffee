@@ -49,7 +49,7 @@ module.exports = (req, res)->
         code = file.content
         errors = yield linter code, Path.extname(filePath)
         outLimit = no
-        if errors.length > 100
+        if errors and errors.length > 100
           # 只截取100个
           errors = errors.slice 0, 100
           outLimit = yes
