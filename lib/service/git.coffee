@@ -5,7 +5,7 @@ log = require './log'
 linter = require './linter'
 mysqlReporter = require './reporter/mysqlReporter'
 mailReporter = require './reporter/mailReporter'
-
+fileReporter = require './reporter/fileReporter'
 
 module.exports = (req, res)->
   res.end '1'
@@ -48,11 +48,6 @@ module.exports = (req, res)->
         file = yield gitFile.getContent()
         code = file.content
         errors = yield linter code, Path.extname(filePath)
-        outLimit = no
-        if errors and errors.length > 100
-          # 只截取100个
-          errors = errors.slice 0, 100
-          outLimit = yes
         # errors可能为null,表示不支持的文件类型
         count =
           error: 0
@@ -84,10 +79,10 @@ module.exports = (req, res)->
         owner: owner
         createtime: Date.now()
         logs: lintedFiles
-        outLimit: outLimit
 
       mailReporter renderData, req.app, owner, owner
       mysqlReporter renderData
+      fileReporter renderData, req.app
 
     res.end('end')
 

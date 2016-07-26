@@ -56,7 +56,6 @@ module.exports = (code, extname)->
           line = errMsg.match(/on line ([\d]*):/)
           if line
             line = line[1]
-          console.log errMsg
           errors = [
             lineNumber: line
             level: 'error'

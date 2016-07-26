@@ -7,6 +7,7 @@ linter = require './linter'
 mysqlReporter = require './reporter/mysqlReporter'
 htmlReporter = require './reporter/htmlReporter'
 mailReporter = require './reporter/mailReporter'
+fileReporter = require './reporter/fileReporter'
 
 
 module.exports = (req, res)->
@@ -52,9 +53,10 @@ module.exports = (req, res)->
       owner: owner
       logs: lintedFiles
 
-    #mysqlReporter renderData
-    mailReporter renderData, req.app, 'wusen@yidian-inc.com', 'wusen@yidian-inc.com', res
+    mysqlReporter renderData
+    #mailReporter renderData, req.app, 'wusen@yidian-inc.com', 'wusen@yidian-inc.com', res
     htmlReporter renderData, res
+    fileReporter renderData, req.app
   .catch (err)->
-    log err
+    log 'catch error', err
     res.end 'err'

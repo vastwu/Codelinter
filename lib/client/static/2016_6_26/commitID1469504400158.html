@@ -1,0 +1,856 @@
+<head><meta charset="utf-8"/><link href="/common/bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet"/><link href="/common/bootstrap/css/bootstrap-theme.css" type="text/css" rel="stylesheet"/><script src="/common/jquery-2.2.3.min.js"></script><script src="/common/bootstrap/js/bootstrap.js"></script><style>.value, .title{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;   
+}</style></head><body><div class="page-header"><h1>Codelint<small> Will hurt your feelings! (And help you code better)</small></h1></div><div class="container-fluid"><div class="row"><div class="col-md-3"><h2>项目信息</h2><div class="list"><div class="title">提交人: owner</div><div class="title">提交时间: 2016-07-26 11:40:00</div><div class="title">项目: productName</div><div class="title">分支: branchName</div><div class="title">CommitID:</div><div class="value"> <a href="https://git.yidian-inc.com:8021/webui/productName/commit/commitID1469504400158">commitID1469504400158</a></div><div class="title">变更文件:</div><div class="value"><a href="#collapse_title_0" title="/Users/wusen/code/github/Codelinter/test/abc.coffee">/Users/wusen/code/github/Codelinter/test/abc.coffee</a></div><div class="value"><a href="#collapse_title_1" title="/Users/wusen/code/github/Codelinter/test/abc.js">/Users/wusen/code/github/Codelinter/test/abc.js</a></div><div class="value"><a href="#collapse_title_2" title="/Users/wusen/code/github/Codelinter/test/configure.coffee">/Users/wusen/code/github/Codelinter/test/configure.coffee</a></div><div class="value"><a href="#collapse_title_3" title="/Users/wusen/code/github/Codelinter/test/global.styl">/Users/wusen/code/github/Codelinter/test/global.styl</a></div><div class="value"><a href="#collapse_title_4" title="/Users/wusen/code/github/Codelinter/test/hhh.html">/Users/wusen/code/github/Codelinter/test/hhh.html</a></div><div class="value"><a href="#collapse_title_5" title="/Users/wusen/code/github/Codelinter/test/manage.jade">/Users/wusen/code/github/Codelinter/test/manage.jade</a></div><div class="value"><a href="#collapse_title_6" title="/Users/wusen/code/github/Codelinter/test/package.json">/Users/wusen/code/github/Codelinter/test/package.json</a></div><div class="value"><a href="#collapse_title_7" title="/Users/wusen/code/github/Codelinter/test/style.css">/Users/wusen/code/github/Codelinter/test/style.css</a></div></div></div><div class="col-md-9"><h2>检查结果</h2><div id="fileList" class="panel-group"><div class="panel panel-default"><div class="panel-heading"><h3 id="collapse_title_0" class="panel-title"><a data-toggle="collapse" aria-expanded="false" href="#collapse_0" data-parent="#fileList">/Users/wusen/code/github/Codelinter/test/abc.coffee</a>&nbsp;<span style="float:right;">&nbsp;<span class="text-danger"><span class="glyphicon glyphicon-remove-sign"> </span><span> 1</span></span>&nbsp;<span class="text-warning"><span class="glyphicon glyphicon-exclamation-sign"></span><span> 1</span></span></span></h3></div><div id="collapse_0" class="panel-collapse collapse in"><div class="panel-body"><p><a href="homepage/blob/branchName//Users/wusen/code/github/Codelinter/test/abc.coffee" target="_blank">[在git中查看文件]</a></p><div><div class="alert alert-warning"><span class="glyphicon glyphicon-exclamation-sign"></span><span> line 80 Found debugging code</span></div><pre>79       return yes
+80     debugger
+81     @boardcast = (evt, args)-&gt;
+82       self = @
+83       sockets = io.sockets.sockets
+84       for id, socket of sockets</pre><!--blockquote This rule detects `debugger` and optionally `console` calls
+This rule is `warn` by default.--></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 132 Line ends with trailing whitespace</span></div><pre>131         return
+132         # 先不做存储 
+133         if not appCode
+134           throw new Error 'missing app code'
+135         delete query.code</pre><!--blockquote This rule forbids trailing whitespace in your code, since it is
+needless cruft. It is enabled by default.--></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="collapse_title_1" class="panel-title"><a data-toggle="collapse" aria-expanded="false" href="#collapse_1" data-parent="#fileList">/Users/wusen/code/github/Codelinter/test/abc.js</a>&nbsp;<span style="float:right;">&nbsp;<span class="text-danger"><span class="glyphicon glyphicon-remove-sign"> </span><span> 113</span></span></span></h3></div><div id="collapse_1" class="panel-collapse collapse in"><div class="panel-body"><p><a href="homepage/blob/branchName//Users/wusen/code/github/Codelinter/test/abc.js" target="_blank">[在git中查看文件]</a></p><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 40 The body of a for in should be wrapped in an if statement to filter unwanted properties from the prototype.</span></div><pre>38     var k, r, v;
+39     r = {};
+40     for (k in source) {
+41       v = source[k];
+42       if (typeof v === 'object') {
+43         r[k] = copy(v);
+44       } else {</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 68 Unused 'data'.</span></div><pre>66     io.on('connection', function (socket) {
+67       console.log('connected!!!!!!!');
+68       socket.on('event', function (data) {
+69         return console.log('--------------------!!!!!!!!!!');
+70       });
+71       socket.on('config', function (data) {
+72         return self.setConfig(socket, data);</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 88 'error' is already defined.</span></div><pre>86         try {
+87           data.filterReg = new RegExp(data.filter);
+88         } catch (error) {
+89           err = error;
+90           socket.emit('error', 'parse config.filter Error!');
+91         }
+92       }</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 94 Unexpected assignment expression.</span></div><pre>92       }
+93       socket.$config = data;
+94       return configs[socket.id] = data;
+95     };
+96     this.getConfig = function (socket) {
+97       return configs[socket.id] || DEFAULT_CONFIG;
+98     };</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 83 Unused 'err'.</span></div><pre>81     configs = {};
+82     this.setConfig = function (socket, data) {
+83       var err, error;
+84       console.log('set config', data);
+85       if (data.filter) {
+86         try {
+87           data.filterReg = new RegExp(data.filter);</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 102 Unexpected assignment expression.</span></div><pre>100       var clients;
+101       io.close();
+102       return clients = [];
+103     };
+104     this.isSending = function (socket, args) {
+105       var config;
+106       config = this.getConfig(socket);</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 100 Unused 'clients'.</span></div><pre> 98     };
+ 99     this.close = function () {
+100       var clients;
+101       io.close();
+102       return clients = [];
+103     };
+104     this.isSending = function (socket, args) {</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 118 Unexpected 'debugger'.</span></div><pre>116       return true;
+117     };
+118     debugger;
+119     this.boardcast = function (evt, args) {
+120       var id, results, socket, sockets;
+121       self = this;
+122       sockets = io.sockets.sockets;</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 129 Expected 'undefined' and instead saw 'void'.</span></div><pre>127           results.push(socket.emit(evt, args));
+128         } else {
+129           results.push(void 0);
+130         }
+131       }
+132       return results;
+133     };</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 124 The body of a for in should be wrapped in an if statement to filter unwanted properties from the prototype.</span></div><pre>122       sockets = io.sockets.sockets;
+123       results = [];
+124       for (id in sockets) {
+125         socket = sockets[id];
+126         if (this.isSending(socket, args) === true) {
+127           results.push(socket.emit(evt, args));
+128         } else {</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 141 Expected 'case' at column 3, not column 5.</span></div><pre>139     var args, exportor, filePath, html, item, log, logs, today, unique;
+140     switch (req.url.pathname) {
+141       case '/status':
+142         return res.json({
+143           status: 200,
+144           enable: manageInstance ? '1' : '0',
+145           socketPort: SOCKET_PORT,</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 142 Expected 'return' at column 5, not column 7.</span></div><pre>140     switch (req.url.pathname) {
+141       case '/status':
+142         return res.json({
+143           status: 200,
+144           enable: manageInstance ? '1' : '0',
+145           socketPort: SOCKET_PORT,
+146           defaultConfig: DEFAULT_CONFIG</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 143 Expected 'status' at column 7, not column 9.</span></div><pre>141       case '/status':
+142         return res.json({
+143           status: 200,
+144           enable: manageInstance ? '1' : '0',
+145           socketPort: SOCKET_PORT,
+146           defaultConfig: DEFAULT_CONFIG
+147         });</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 144 Expected 'enable' at column 7, not column 9.</span></div><pre>142         return res.json({
+143           status: 200,
+144           enable: manageInstance ? '1' : '0',
+145           socketPort: SOCKET_PORT,
+146           defaultConfig: DEFAULT_CONFIG
+147         });
+148       case '/start':</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 145 Expected 'socketPort' at column 7, not column 9.</span></div><pre>143           status: 200,
+144           enable: manageInstance ? '1' : '0',
+145           socketPort: SOCKET_PORT,
+146           defaultConfig: DEFAULT_CONFIG
+147         });
+148       case '/start':
+149         if (!manageInstance) {</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 146 Expected 'defaultConfig' at column 7, not column 9.</span></div><pre>144           enable: manageInstance ? '1' : '0',
+145           socketPort: SOCKET_PORT,
+146           defaultConfig: DEFAULT_CONFIG
+147         });
+148       case '/start':
+149         if (!manageInstance) {
+150           manageInstance = new SocketManager(SOCKET_PORT);</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 147 Expected '}' at column 5, not column 7.</span></div><pre>145           socketPort: SOCKET_PORT,
+146           defaultConfig: DEFAULT_CONFIG
+147         });
+148       case '/start':
+149         if (!manageInstance) {
+150           manageInstance = new SocketManager(SOCKET_PORT);
+151           res.json({</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 148 Expected 'case' at column 3, not column 5.</span></div><pre>146           defaultConfig: DEFAULT_CONFIG
+147         });
+148       case '/start':
+149         if (!manageInstance) {
+150           manageInstance = new SocketManager(SOCKET_PORT);
+151           res.json({
+152             status: 200,</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 149 Expected 'if' at column 5, not column 7.</span></div><pre>147         });
+148       case '/start':
+149         if (!manageInstance) {
+150           manageInstance = new SocketManager(SOCKET_PORT);
+151           res.json({
+152             status: 200,
+153             socketPort: SOCKET_PORT</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 150 Expected 'manageInstance' at column 7, not column 9.</span></div><pre>148       case '/start':
+149         if (!manageInstance) {
+150           manageInstance = new SocketManager(SOCKET_PORT);
+151           res.json({
+152             status: 200,
+153             socketPort: SOCKET_PORT
+154           });</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 151 Expected 'res' at column 7, not column 9.</span></div><pre>149         if (!manageInstance) {
+150           manageInstance = new SocketManager(SOCKET_PORT);
+151           res.json({
+152             status: 200,
+153             socketPort: SOCKET_PORT
+154           });
+155         } else {</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 152 Expected 'status' at column 9, not column 11.</span></div><pre>150           manageInstance = new SocketManager(SOCKET_PORT);
+151           res.json({
+152             status: 200,
+153             socketPort: SOCKET_PORT
+154           });
+155         } else {
+156           res.json({</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 153 Expected 'socketPort' at column 9, not column 11.</span></div><pre>151           res.json({
+152             status: 200,
+153             socketPort: SOCKET_PORT
+154           });
+155         } else {
+156           res.json({
+157             status: 500,</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 154 Expected '}' at column 7, not column 9.</span></div><pre>152             status: 200,
+153             socketPort: SOCKET_PORT
+154           });
+155         } else {
+156           res.json({
+157             status: 500,
+158             reason: &quot;socket is listening &quot; + SOCKET_PORT,</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 155 Expected '}' at column 5, not column 7.</span></div><pre>153             socketPort: SOCKET_PORT
+154           });
+155         } else {
+156           res.json({
+157             status: 500,
+158             reason: &quot;socket is listening &quot; + SOCKET_PORT,
+159             socketPort: SOCKET_PORT</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 156 Expected 'res' at column 7, not column 9.</span></div><pre>154           });
+155         } else {
+156           res.json({
+157             status: 500,
+158             reason: &quot;socket is listening &quot; + SOCKET_PORT,
+159             socketPort: SOCKET_PORT
+160           });</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 157 Expected 'status' at column 9, not column 11.</span></div><pre>155         } else {
+156           res.json({
+157             status: 500,
+158             reason: &quot;socket is listening &quot; + SOCKET_PORT,
+159             socketPort: SOCKET_PORT
+160           });
+161         }</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 158 Expected 'reason' at column 9, not column 11.</span></div><pre>156           res.json({
+157             status: 500,
+158             reason: &quot;socket is listening &quot; + SOCKET_PORT,
+159             socketPort: SOCKET_PORT
+160           });
+161         }
+162         break;</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 159 Expected 'socketPort' at column 9, not column 11.</span></div><pre>157             status: 500,
+158             reason: &quot;socket is listening &quot; + SOCKET_PORT,
+159             socketPort: SOCKET_PORT
+160           });
+161         }
+162         break;
+163       case '/stop':</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 160 Expected '}' at column 7, not column 9.</span></div><pre>158             reason: &quot;socket is listening &quot; + SOCKET_PORT,
+159             socketPort: SOCKET_PORT
+160           });
+161         }
+162         break;
+163       case '/stop':
+164         manageInstance.close();</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 161 Expected '}' at column 5, not column 7.</span></div><pre>159             socketPort: SOCKET_PORT
+160           });
+161         }
+162         break;
+163       case '/stop':
+164         manageInstance.close();
+165         manageInstance = null;</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 162 Expected 'break' at column 5, not column 7.</span></div><pre>160           });
+161         }
+162         break;
+163       case '/stop':
+164         manageInstance.close();
+165         manageInstance = null;
+166         res.end('ok');</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 163 Expected 'case' at column 3, not column 5.</span></div><pre>161         }
+162         break;
+163       case '/stop':
+164         manageInstance.close();
+165         manageInstance = null;
+166         res.end('ok');
+167         break;</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 164 Expected 'manageInstance' at column 5, not column 7.</span></div><pre>162         break;
+163       case '/stop':
+164         manageInstance.close();
+165         manageInstance = null;
+166         res.end('ok');
+167         break;
+168       case '/send':</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 165 Expected 'manageInstance' at column 5, not column 7.</span></div><pre>163       case '/stop':
+164         manageInstance.close();
+165         manageInstance = null;
+166         res.end('ok');
+167         break;
+168       case '/send':
+169         res.end('');</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 166 Expected 'res' at column 5, not column 7.</span></div><pre>164         manageInstance.close();
+165         manageInstance = null;
+166         res.end('ok');
+167         break;
+168       case '/send':
+169         res.end('');
+170         if (!manageInstance) {</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 167 Expected 'break' at column 5, not column 7.</span></div><pre>165         manageInstance = null;
+166         res.end('ok');
+167         break;
+168       case '/send':
+169         res.end('');
+170         if (!manageInstance) {
+171           return;</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 168 Expected 'case' at column 3, not column 5.</span></div><pre>166         res.end('ok');
+167         break;
+168       case '/send':
+169         res.end('');
+170         if (!manageInstance) {
+171           return;
+172         }</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 169 Expected 'res' at column 5, not column 7.</span></div><pre>167         break;
+168       case '/send':
+169         res.end('');
+170         if (!manageInstance) {
+171           return;
+172         }
+173         args = copy(req.url.query);</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 170 Expected 'if' at column 5, not column 7.</span></div><pre>168       case '/send':
+169         res.end('');
+170         if (!manageInstance) {
+171           return;
+172         }
+173         args = copy(req.url.query);
+174         args.ua = req.headers['user-agent'] || '';</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 171 Expected 'return' at column 7, not column 9.</span></div><pre>169         res.end('');
+170         if (!manageInstance) {
+171           return;
+172         }
+173         args = copy(req.url.query);
+174         args.ua = req.headers['user-agent'] || '';
+175         args.host = req.headers['host'] || '';</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 172 Expected '}' at column 5, not column 7.</span></div><pre>170         if (!manageInstance) {
+171           return;
+172         }
+173         args = copy(req.url.query);
+174         args.ua = req.headers['user-agent'] || '';
+175         args.host = req.headers['host'] || '';
+176         args.cookie = req.headers.cookie || '';</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 173 Expected 'args' at column 5, not column 7.</span></div><pre>171           return;
+172         }
+173         args = copy(req.url.query);
+174         args.ua = req.headers['user-agent'] || '';
+175         args.host = req.headers['host'] || '';
+176         args.cookie = req.headers.cookie || '';
+177         args.date = Date.now();</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 174 Expected 'args' at column 5, not column 7.</span></div><pre>172         }
+173         args = copy(req.url.query);
+174         args.ua = req.headers['user-agent'] || '';
+175         args.host = req.headers['host'] || '';
+176         args.cookie = req.headers.cookie || '';
+177         args.date = Date.now();
+178         manageInstance.boardcast('log', args);</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 175 Expected 'args' at column 5, not column 7.</span></div><pre>173         args = copy(req.url.query);
+174         args.ua = req.headers['user-agent'] || '';
+175         args.host = req.headers['host'] || '';
+176         args.cookie = req.headers.cookie || '';
+177         args.date = Date.now();
+178         manageInstance.boardcast('log', args);
+179         return;</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 175 ['host'] is better written in dot notation.</span></div><pre>173         args = copy(req.url.query);
+174         args.ua = req.headers['user-agent'] || '';
+175         args.host = req.headers['host'] || '';
+176         args.cookie = req.headers.cookie || '';
+177         args.date = Date.now();
+178         manageInstance.boardcast('log', args);
+179         return;</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 176 Expected 'args' at column 5, not column 7.</span></div><pre>174         args.ua = req.headers['user-agent'] || '';
+175         args.host = req.headers['host'] || '';
+176         args.cookie = req.headers.cookie || '';
+177         args.date = Date.now();
+178         manageInstance.boardcast('log', args);
+179         return;
+180         if (!appCode) {</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 177 Expected 'args' at column 5, not column 7.</span></div><pre>175         args.host = req.headers['host'] || '';
+176         args.cookie = req.headers.cookie || '';
+177         args.date = Date.now();
+178         manageInstance.boardcast('log', args);
+179         return;
+180         if (!appCode) {
+181           throw new Error('missing app code');</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 178 Expected 'manageInstance' at column 5, not column 7.</span></div><pre>176         args.cookie = req.headers.cookie || '';
+177         args.date = Date.now();
+178         manageInstance.boardcast('log', args);
+179         return;
+180         if (!appCode) {
+181           throw new Error('missing app code');
+182         }</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 179 Expected 'return' at column 5, not column 7.</span></div><pre>177         args.date = Date.now();
+178         manageInstance.boardcast('log', args);
+179         return;
+180         if (!appCode) {
+181           throw new Error('missing app code');
+182         }
+183         delete query.code;</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 180 Unreachable 'if' after 'return'.</span></div><pre>178         manageInstance.boardcast('log', args);
+179         return;
+180         if (!appCode) {
+181           throw new Error('missing app code');
+182         }
+183         delete query.code;
+184         exportor = logExportors[appCode];</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 180 'appCode' was used before it was defined.</span></div><pre>178         manageInstance.boardcast('log', args);
+179         return;
+180         if (!appCode) {
+181           throw new Error('missing app code');
+182         }
+183         delete query.code;
+184         exportor = logExportors[appCode];</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 181 Expected 'throw' at column 7, not column 9.</span></div><pre>179         return;
+180         if (!appCode) {
+181           throw new Error('missing app code');
+182         }
+183         delete query.code;
+184         exportor = logExportors[appCode];
+185         if (!exportor) {</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 182 Expected '}' at column 5, not column 7.</span></div><pre>180         if (!appCode) {
+181           throw new Error('missing app code');
+182         }
+183         delete query.code;
+184         exportor = logExportors[appCode];
+185         if (!exportor) {
+186           exportor = logExportors[appCode] = new LogExportor(appCode);</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 183 Expected 'delete' at column 5, not column 7.</span></div><pre>181           throw new Error('missing app code');
+182         }
+183         delete query.code;
+184         exportor = logExportors[appCode];
+185         if (!exportor) {
+186           exportor = logExportors[appCode] = new LogExportor(appCode);
+187           exportor.autoFlush(true);</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 183 'query' was used before it was defined.</span></div><pre>181           throw new Error('missing app code');
+182         }
+183         delete query.code;
+184         exportor = logExportors[appCode];
+185         if (!exportor) {
+186           exportor = logExportors[appCode] = new LogExportor(appCode);
+187           exportor.autoFlush(true);</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 184 Expected 'exportor' at column 5, not column 7.</span></div><pre>182         }
+183         delete query.code;
+184         exportor = logExportors[appCode];
+185         if (!exportor) {
+186           exportor = logExportors[appCode] = new LogExportor(appCode);
+187           exportor.autoFlush(true);
+188         }</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 184 'appCode' was used before it was defined.</span></div><pre>182         }
+183         delete query.code;
+184         exportor = logExportors[appCode];
+185         if (!exportor) {
+186           exportor = logExportors[appCode] = new LogExportor(appCode);
+187           exportor.autoFlush(true);
+188         }</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 185 Expected 'if' at column 5, not column 7.</span></div><pre>183         delete query.code;
+184         exportor = logExportors[appCode];
+185         if (!exportor) {
+186           exportor = logExportors[appCode] = new LogExportor(appCode);
+187           exportor.autoFlush(true);
+188         }
+189         today = new Date();</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 186 Expected 'exportor' at column 7, not column 9.</span></div><pre>184         exportor = logExportors[appCode];
+185         if (!exportor) {
+186           exportor = logExportors[appCode] = new LogExportor(appCode);
+187           exportor.autoFlush(true);
+188         }
+189         today = new Date();
+190         log = {</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 186 'appCode' was used before it was defined.</span></div><pre>184         exportor = logExportors[appCode];
+185         if (!exportor) {
+186           exportor = logExportors[appCode] = new LogExportor(appCode);
+187           exportor.autoFlush(true);
+188         }
+189         today = new Date();
+190         log = {</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 186 'appCode' was used before it was defined.</span></div><pre>184         exportor = logExportors[appCode];
+185         if (!exportor) {
+186           exportor = logExportors[appCode] = new LogExportor(appCode);
+187           exportor.autoFlush(true);
+188         }
+189         today = new Date();
+190         log = {</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 187 Expected 'exportor' at column 7, not column 9.</span></div><pre>185         if (!exportor) {
+186           exportor = logExportors[appCode] = new LogExportor(appCode);
+187           exportor.autoFlush(true);
+188         }
+189         today = new Date();
+190         log = {
+191           query: query,</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 188 Expected '}' at column 5, not column 7.</span></div><pre>186           exportor = logExportors[appCode] = new LogExportor(appCode);
+187           exportor.autoFlush(true);
+188         }
+189         today = new Date();
+190         log = {
+191           query: query,
+192           unique: query.unique || void 0,</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 189 Expected 'today' at column 5, not column 7.</span></div><pre>187           exportor.autoFlush(true);
+188         }
+189         today = new Date();
+190         log = {
+191           query: query,
+192           unique: query.unique || void 0,
+193           ua: ua,</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 190 Expected 'log' at column 5, not column 7.</span></div><pre>188         }
+189         today = new Date();
+190         log = {
+191           query: query,
+192           unique: query.unique || void 0,
+193           ua: ua,
+194           cookie: req.headers.cookie,</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 191 Expected 'query' at column 7, not column 9.</span></div><pre>189         today = new Date();
+190         log = {
+191           query: query,
+192           unique: query.unique || void 0,
+193           ua: ua,
+194           cookie: req.headers.cookie,
+195           host: host,</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 191 'query' was used before it was defined.</span></div><pre>189         today = new Date();
+190         log = {
+191           query: query,
+192           unique: query.unique || void 0,
+193           ua: ua,
+194           cookie: req.headers.cookie,
+195           host: host,</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 192 Expected 'unique' at column 7, not column 9.</span></div><pre>190         log = {
+191           query: query,
+192           unique: query.unique || void 0,
+193           ua: ua,
+194           cookie: req.headers.cookie,
+195           host: host,
+196           date: today.getTime()</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 192 'query' was used before it was defined.</span></div><pre>190         log = {
+191           query: query,
+192           unique: query.unique || void 0,
+193           ua: ua,
+194           cookie: req.headers.cookie,
+195           host: host,
+196           date: today.getTime()</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 192 Expected 'undefined' and instead saw 'void'.</span></div><pre>190         log = {
+191           query: query,
+192           unique: query.unique || void 0,
+193           ua: ua,
+194           cookie: req.headers.cookie,
+195           host: host,
+196           date: today.getTime()</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 193 Expected 'ua' at column 7, not column 9.</span></div><pre>191           query: query,
+192           unique: query.unique || void 0,
+193           ua: ua,
+194           cookie: req.headers.cookie,
+195           host: host,
+196           date: today.getTime()
+197         };</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 193 'ua' was used before it was defined.</span></div><pre>191           query: query,
+192           unique: query.unique || void 0,
+193           ua: ua,
+194           cookie: req.headers.cookie,
+195           host: host,
+196           date: today.getTime()
+197         };</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 194 Expected 'cookie' at column 7, not column 9.</span></div><pre>192           unique: query.unique || void 0,
+193           ua: ua,
+194           cookie: req.headers.cookie,
+195           host: host,
+196           date: today.getTime()
+197         };
+198         unique = query.unique;</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 195 Expected 'host' at column 7, not column 9.</span></div><pre>193           ua: ua,
+194           cookie: req.headers.cookie,
+195           host: host,
+196           date: today.getTime()
+197         };
+198         unique = query.unique;
+199         delete query.unique;</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 195 'host' was used before it was defined.</span></div><pre>193           ua: ua,
+194           cookie: req.headers.cookie,
+195           host: host,
+196           date: today.getTime()
+197         };
+198         unique = query.unique;
+199         delete query.unique;</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 196 Expected 'date' at column 7, not column 9.</span></div><pre>194           cookie: req.headers.cookie,
+195           host: host,
+196           date: today.getTime()
+197         };
+198         unique = query.unique;
+199         delete query.unique;
+200         exportor.push(log, unique);</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 197 Expected '}' at column 5, not column 7.</span></div><pre>195           host: host,
+196           date: today.getTime()
+197         };
+198         unique = query.unique;
+199         delete query.unique;
+200         exportor.push(log, unique);
+201         log._waiting = exportor.length;</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 198 Expected 'unique' at column 5, not column 7.</span></div><pre>196           date: today.getTime()
+197         };
+198         unique = query.unique;
+199         delete query.unique;
+200         exportor.push(log, unique);
+201         log._waiting = exportor.length;
+202         return res.json(log);</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 198 'query' was used before it was defined.</span></div><pre>196           date: today.getTime()
+197         };
+198         unique = query.unique;
+199         delete query.unique;
+200         exportor.push(log, unique);
+201         log._waiting = exportor.length;
+202         return res.json(log);</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 199 Expected 'delete' at column 5, not column 7.</span></div><pre>197         };
+198         unique = query.unique;
+199         delete query.unique;
+200         exportor.push(log, unique);
+201         log._waiting = exportor.length;
+202         return res.json(log);
+203       case '/index':</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 199 'query' was used before it was defined.</span></div><pre>197         };
+198         unique = query.unique;
+199         delete query.unique;
+200         exportor.push(log, unique);
+201         log._waiting = exportor.length;
+202         return res.json(log);
+203       case '/index':</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 200 Expected 'exportor' at column 5, not column 7.</span></div><pre>198         unique = query.unique;
+199         delete query.unique;
+200         exportor.push(log, unique);
+201         log._waiting = exportor.length;
+202         return res.json(log);
+203       case '/index':
+204         filePath = &quot;lib/client/report/index.html&quot;;</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 201 Expected 'log' at column 5, not column 7.</span></div><pre>199         delete query.unique;
+200         exportor.push(log, unique);
+201         log._waiting = exportor.length;
+202         return res.json(log);
+203       case '/index':
+204         filePath = &quot;lib/client/report/index.html&quot;;
+205         html = fs.readFileSync(filePath, 'utf-8');</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 201 Unexpected dangling '_' in '_waiting'.</span></div><pre>199         delete query.unique;
+200         exportor.push(log, unique);
+201         log._waiting = exportor.length;
+202         return res.json(log);
+203       case '/index':
+204         filePath = &quot;lib/client/report/index.html&quot;;
+205         html = fs.readFileSync(filePath, 'utf-8');</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 202 Expected 'return' at column 5, not column 7.</span></div><pre>200         exportor.push(log, unique);
+201         log._waiting = exportor.length;
+202         return res.json(log);
+203       case '/index':
+204         filePath = &quot;lib/client/report/index.html&quot;;
+205         html = fs.readFileSync(filePath, 'utf-8');
+206         return res.end(html);</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 203 Expected 'case' at column 3, not column 5.</span></div><pre>201         log._waiting = exportor.length;
+202         return res.json(log);
+203       case '/index':
+204         filePath = &quot;lib/client/report/index.html&quot;;
+205         html = fs.readFileSync(filePath, 'utf-8');
+206         return res.end(html);
+207       case '/get':</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 204 Expected 'filePath' at column 5, not column 7.</span></div><pre>202         return res.json(log);
+203       case '/index':
+204         filePath = &quot;lib/client/report/index.html&quot;;
+205         html = fs.readFileSync(filePath, 'utf-8');
+206         return res.end(html);
+207       case '/get':
+208         filePath = &quot;logs/app.3.20160114&quot;;</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 205 Expected 'html' at column 5, not column 7.</span></div><pre>203       case '/index':
+204         filePath = &quot;lib/client/report/index.html&quot;;
+205         html = fs.readFileSync(filePath, 'utf-8');
+206         return res.end(html);
+207       case '/get':
+208         filePath = &quot;logs/app.3.20160114&quot;;
+209         logs = fs.readFileSync(filePath, 'utf-8');</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 205 Unexpected sync method: 'readFileSync'.</span></div><pre>203       case '/index':
+204         filePath = &quot;lib/client/report/index.html&quot;;
+205         html = fs.readFileSync(filePath, 'utf-8');
+206         return res.end(html);
+207       case '/get':
+208         filePath = &quot;logs/app.3.20160114&quot;;
+209         logs = fs.readFileSync(filePath, 'utf-8');</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 206 Expected 'return' at column 5, not column 7.</span></div><pre>204         filePath = &quot;lib/client/report/index.html&quot;;
+205         html = fs.readFileSync(filePath, 'utf-8');
+206         return res.end(html);
+207       case '/get':
+208         filePath = &quot;logs/app.3.20160114&quot;;
+209         logs = fs.readFileSync(filePath, 'utf-8');
+210         logs = logs.split('\n');</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 207 Expected 'case' at column 3, not column 5.</span></div><pre>205         html = fs.readFileSync(filePath, 'utf-8');
+206         return res.end(html);
+207       case '/get':
+208         filePath = &quot;logs/app.3.20160114&quot;;
+209         logs = fs.readFileSync(filePath, 'utf-8');
+210         logs = logs.split('\n');
+211         logs = (function () {</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 208 Expected 'filePath' at column 5, not column 7.</span></div><pre>206         return res.end(html);
+207       case '/get':
+208         filePath = &quot;logs/app.3.20160114&quot;;
+209         logs = fs.readFileSync(filePath, 'utf-8');
+210         logs = logs.split('\n');
+211         logs = (function () {
+212           var i, len, results;</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 209 Expected 'logs' at column 5, not column 7.</span></div><pre>207       case '/get':
+208         filePath = &quot;logs/app.3.20160114&quot;;
+209         logs = fs.readFileSync(filePath, 'utf-8');
+210         logs = logs.split('\n');
+211         logs = (function () {
+212           var i, len, results;
+213           results = [];</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 209 Unexpected sync method: 'readFileSync'.</span></div><pre>207       case '/get':
+208         filePath = &quot;logs/app.3.20160114&quot;;
+209         logs = fs.readFileSync(filePath, 'utf-8');
+210         logs = logs.split('\n');
+211         logs = (function () {
+212           var i, len, results;
+213           results = [];</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 210 Expected 'logs' at column 5, not column 7.</span></div><pre>208         filePath = &quot;logs/app.3.20160114&quot;;
+209         logs = fs.readFileSync(filePath, 'utf-8');
+210         logs = logs.split('\n');
+211         logs = (function () {
+212           var i, len, results;
+213           results = [];
+214           for (i = 0, len = logs.length; i &lt; len; i++) {</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 211 Expected 'logs' at column 5, not column 7.</span></div><pre>209         logs = fs.readFileSync(filePath, 'utf-8');
+210         logs = logs.split('\n');
+211         logs = (function () {
+212           var i, len, results;
+213           results = [];
+214           for (i = 0, len = logs.length; i &lt; len; i++) {
+215             item = logs[i];</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 212 Expected 'var' at column 7, not column 9.</span></div><pre>210         logs = logs.split('\n');
+211         logs = (function () {
+212           var i, len, results;
+213           results = [];
+214           for (i = 0, len = logs.length; i &lt; len; i++) {
+215             item = logs[i];
+216             if (item) {</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 213 Expected 'results' at column 7, not column 9.</span></div><pre>211         logs = (function () {
+212           var i, len, results;
+213           results = [];
+214           for (i = 0, len = logs.length; i &lt; len; i++) {
+215             item = logs[i];
+216             if (item) {
+217               results.push(JSON.parse(item));</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 214 Expected 'for' at column 7, not column 9.</span></div><pre>212           var i, len, results;
+213           results = [];
+214           for (i = 0, len = logs.length; i &lt; len; i++) {
+215             item = logs[i];
+216             if (item) {
+217               results.push(JSON.parse(item));
+218             }</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 214 Unexpected '++'.</span></div><pre>212           var i, len, results;
+213           results = [];
+214           for (i = 0, len = logs.length; i &lt; len; i++) {
+215             item = logs[i];
+216             if (item) {
+217               results.push(JSON.parse(item));
+218             }</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 215 Expected 'item' at column 9, not column 11.</span></div><pre>213           results = [];
+214           for (i = 0, len = logs.length; i &lt; len; i++) {
+215             item = logs[i];
+216             if (item) {
+217               results.push(JSON.parse(item));
+218             }
+219           }</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 216 Expected 'if' at column 9, not column 11.</span></div><pre>214           for (i = 0, len = logs.length; i &lt; len; i++) {
+215             item = logs[i];
+216             if (item) {
+217               results.push(JSON.parse(item));
+218             }
+219           }
+220           return results;</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 217 Expected 'results' at column 11, not column 13.</span></div><pre>215             item = logs[i];
+216             if (item) {
+217               results.push(JSON.parse(item));
+218             }
+219           }
+220           return results;
+221         })();</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 218 Expected '}' at column 9, not column 11.</span></div><pre>216             if (item) {
+217               results.push(JSON.parse(item));
+218             }
+219           }
+220           return results;
+221         })();
+222         return res.json({</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 219 Expected '}' at column 7, not column 9.</span></div><pre>217               results.push(JSON.parse(item));
+218             }
+219           }
+220           return results;
+221         })();
+222         return res.json({
+223           status: 0,</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 220 Expected 'return' at column 7, not column 9.</span></div><pre>218             }
+219           }
+220           return results;
+221         })();
+222         return res.json({
+223           status: 0,
+224           result: logs</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 221 Expected '}' at column 5, not column 7.</span></div><pre>219           }
+220           return results;
+221         })();
+222         return res.json({
+223           status: 0,
+224           result: logs
+225         });</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 221 Move the invocation into the parens that contain the function.</span></div><pre>219           }
+220           return results;
+221         })();
+222         return res.json({
+223           status: 0,
+224           result: logs
+225         });</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 222 Expected 'return' at column 5, not column 7.</span></div><pre>220           return results;
+221         })();
+222         return res.json({
+223           status: 0,
+224           result: logs
+225         });
+226     }</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 223 Expected 'status' at column 7, not column 9.</span></div><pre>221         })();
+222         return res.json({
+223           status: 0,
+224           result: logs
+225         });
+226     }
+227   };</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 224 Expected 'result' at column 7, not column 9.</span></div><pre>222         return res.json({
+223           status: 0,
+224           result: logs
+225         });
+226     }
+227   };</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 225 Expected '}' at column 5, not column 7.</span></div><pre>223           status: 0,
+224           result: logs
+225         });
+226     }
+227   };</pre><!--blockquote --></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="collapse_title_2" class="panel-title"><a data-toggle="collapse" aria-expanded="false" href="#collapse_2" data-parent="#fileList">/Users/wusen/code/github/Codelinter/test/configure.coffee</a>&nbsp;<span style="float:right;">&nbsp;<span class="text-danger"><span class="glyphicon glyphicon-remove-sign"> </span><span> 5</span></span></span></h3></div><div id="collapse_2" class="panel-collapse collapse in"><div class="panel-body"><p><a href="homepage/blob/branchName//Users/wusen/code/github/Codelinter/test/configure.coffee" target="_blank">[在git中查看文件]</a></p><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 29 [stdin]:29:12: error: unexpected :
+  a1_apiUri: 'http://a1.go2yd.com/Website'
+           ^</span></div><pre>27   session_maxAge: 5 * 1000
+28     #a1_apiUri: 'http://10.103.16.14:1234/?target=http://a1.go2yd.com/Website'
+29     a1_apiUri: 'http://a1.go2yd.com/Website'
+30     a4_apiUri: 'http://a4.go2yd.com/Website'
+31     # 内网超慢，需要转发接口
+32     #a4_apiUri: 'http://10.103.16.14:1234/?target=http://a4.go2yd.com/Website'
+33     redis_enable: yes</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 131 Line contains inconsistent indentation</span></div><pre>129   coverConfig = null
+130   if is_debug
+131    coverConfig = debug_api
+132    conf.runningMode = 'debug'
+133   else if is_test
+134    args = NODE_ENV.split('-')
+135    coverConfig = test_api[args[1]]</pre><!--blockquote This rule imposes a standard number of spaces to be used for
+indentation. Since whitespace is significant in CoffeeScript, it's
+critical that a project chooses a standard indentation format and
+stays consistent. Other roads lead to darkness. <pre> <code>#
+Enabling this option will prevent this ugly
+# but otherwise valid CoffeeScript.
+twoSpaces = () ->
+  fourSpaces = () ->
+      eightSpaces = () ->
+            'this is valid CoffeeScript'
+
+</code>
+</pre>
+Two space indentation is enabled by default.--></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 134 Line contains inconsistent indentation</span></div><pre>132    conf.runningMode = 'debug'
+133   else if is_test
+134    args = NODE_ENV.split('-')
+135    coverConfig = test_api[args[1]]
+136    conf.runningMode = 'test'
+137   else if is_stable
+138    args = NODE_ENV.split('-')</pre><!--blockquote This rule imposes a standard number of spaces to be used for
+indentation. Since whitespace is significant in CoffeeScript, it's
+critical that a project chooses a standard indentation format and
+stays consistent. Other roads lead to darkness. <pre> <code>#
+Enabling this option will prevent this ugly
+# but otherwise valid CoffeeScript.
+twoSpaces = () ->
+  fourSpaces = () ->
+      eightSpaces = () ->
+            'this is valid CoffeeScript'
+
+</code>
+</pre>
+Two space indentation is enabled by default.--></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 138 Line contains inconsistent indentation</span></div><pre>136    conf.runningMode = 'test'
+137   else if is_stable
+138    args = NODE_ENV.split('-')
+139    coverConfig = stable_api[args[1]]
+140    conf.runningMode = 'stable'
+142   if coverConfig</pre><!--blockquote This rule imposes a standard number of spaces to be used for
+indentation. Since whitespace is significant in CoffeeScript, it's
+critical that a project chooses a standard indentation format and
+stays consistent. Other roads lead to darkness. <pre> <code>#
+Enabling this option will prevent this ugly
+# but otherwise valid CoffeeScript.
+twoSpaces = () ->
+  fourSpaces = () ->
+      eightSpaces = () ->
+            'this is valid CoffeeScript'
+
+</code>
+</pre>
+Two space indentation is enabled by default.--></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 143 Line contains inconsistent indentation</span></div><pre>142   if coverConfig
+143    console.log &quot;!!!!api domain for #{NODE_ENV}&quot;
+144    for key, value of coverConfig
+145      conf[key] = value
+147   module.exports = conf</pre><!--blockquote This rule imposes a standard number of spaces to be used for
+indentation. Since whitespace is significant in CoffeeScript, it's
+critical that a project chooses a standard indentation format and
+stays consistent. Other roads lead to darkness. <pre> <code>#
+Enabling this option will prevent this ugly
+# but otherwise valid CoffeeScript.
+twoSpaces = () ->
+  fourSpaces = () ->
+      eightSpaces = () ->
+            'this is valid CoffeeScript'
+
+</code>
+</pre>
+Two space indentation is enabled by default.--></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="collapse_title_3" class="panel-title"><a>/Users/wusen/code/github/Codelinter/test/global.styl</a>&nbsp;<span style="float:right;"><span class="text-info"><span class="glyphicon glyphicon-question-sign"></span><span> Not Support!</span></span></span></h3></div><div id="collapse_3" class="panel-collapse collapse in"><div class="panel-body"><p><a href="homepage/blob/branchName//Users/wusen/code/github/Codelinter/test/global.styl" target="_blank">[在git中查看文件]</a></p></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="collapse_title_4" class="panel-title"><a data-toggle="collapse" aria-expanded="false" href="#collapse_4" data-parent="#fileList">/Users/wusen/code/github/Codelinter/test/hhh.html</a>&nbsp;<span style="float:right;">&nbsp;<span class="text-danger"><span class="glyphicon glyphicon-remove-sign"> </span><span> 3</span></span></span></h3></div><div id="collapse_4" class="panel-collapse collapse in"><div class="panel-body"><p><a href="homepage/blob/branchName//Users/wusen/code/github/Codelinter/test/hhh.html" target="_blank">[在git中查看文件]</a></p><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 4 img-req-alt</span></div><pre>2     &lt;h1&gt;&lt;/h1&gt;
+3     &lt;div&gt;
+4       &lt;img src=&quot;&quot; /&gt;
+5       &lt;span&gt;&lt;/spa&gt; 
+6     &lt;/div&gt;
+7     &lt;/div&gt;
+8     &lt;/div&gt;</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 4 img-req-src</span></div><pre>2     &lt;h1&gt;&lt;/h1&gt;
+3     &lt;div&gt;
+4       &lt;img src=&quot;&quot; /&gt;
+5       &lt;span&gt;&lt;/spa&gt; 
+6     &lt;/div&gt;
+7     &lt;/div&gt;
+8     &lt;/div&gt;</pre><!--blockquote --></div><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 5 tag-name-match</span></div><pre>3     &lt;div&gt;
+4       &lt;img src=&quot;&quot; /&gt;
+5       &lt;span&gt;&lt;/spa&gt; 
+6     &lt;/div&gt;
+7     &lt;/div&gt;
+8     &lt;/div&gt;
+9   &lt;/div&gt;</pre><!--blockquote --></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="collapse_title_5" class="panel-title"><a data-toggle="collapse" aria-expanded="false" href="#collapse_5" data-parent="#fileList">/Users/wusen/code/github/Codelinter/test/manage.jade</a>&nbsp;<span style="float:right;">&nbsp;<span class="text-danger"><span class="glyphicon glyphicon-remove-sign"> </span><span> 1</span></span></span></h3></div><div id="collapse_5" class="panel-collapse collapse in"><div class="panel-body"><p><a href="homepage/blob/branchName//Users/wusen/code/github/Codelinter/test/manage.jade" target="_blank">[在git中查看文件]</a></p><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 1 HTML root requires a lang attribute</span></div><pre>1   doctype
+2   html
+3     head
+4       meta(http-equiv=&quot;Content-type&quot;, content='text/html; charset=utf-8')
+5       meta(name=&quot;keywords&quot;, content=&quot;一点资讯，新闻资讯应用，头条，热点，科技，娱乐，健康，时尚，家居，教育，旅行，两性，美食，星座，阅读，个性化新闻&quot;)</pre><!--blockquote --></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="collapse_title_6" class="panel-title"><a data-toggle="collapse" aria-expanded="false" href="#collapse_6" data-parent="#fileList">/Users/wusen/code/github/Codelinter/test/package.json</a>&nbsp;<span style="float:right;">&nbsp;<span class="text-danger"><span class="glyphicon glyphicon-remove-sign"> </span><span> 1</span></span></span></h3></div><div id="collapse_6" class="panel-collapse collapse in"><div class="panel-body"><p><a href="homepage/blob/branchName//Users/wusen/code/github/Codelinter/test/package.json" target="_blank">[在git中查看文件]</a></p><div><div class="alert alert-danger"> <span class="glyphicon glyphicon-remove-sign"></span><span> line 13 Error: Parse error on line 13:
+...int&quot;: &quot;^1.15.7&quot;    &quot;coffeelint-stylish&quot;
+----------------------^
+Expecting 'EOF', '}', ':', ',', ']', got 'STRING'</span></div><pre>  11       &quot;co&quot;: &quot;^4.6.0&quot;,
+  12       &quot;coffee-script&quot;: &quot;^1.10.0&quot;,
+  13       &quot;coffeelint&quot;: &quot;^1.15.7&quot;
+  14       &quot;coffeelint-stylish&quot;: &quot;^0.1.2&quot;,
+  15       &quot;csslint&quot;: &quot;^1.0.1&quot;,
+  16       &quot;express&quot;: &quot;^4.14.0&quot;,
+  17       &quot;gitlab-yaac&quot;: &quot;0.0.4&quot;,
+  18       &quot;htmllint&quot;: &quot;^0.4.0&quot;,
+  19       &quot;jade&quot;: &quot;^1.11.0&quot;,
+  20       &quot;jadelint&quot;: &quot;^0.3.3&quot;,
+  21       &quot;jslint&quot;: &quot;^0.10.1&quot;,
+  22       &quot;jsonlint&quot;: &quot;^1.6.2&quot;,
+  23       &quot;mysql&quot;: &quot;^2.11.1&quot;,
+  24       &quot;nodemailer&quot;: &quot;^2.5.0&quot;,
+  25       &quot;request&quot;: &quot;^2.73.0&quot;,
+  26       &quot;serve-static&quot;: &quot;^1.11.1&quot;
+  27     },
+  28     &quot;keywords&quot;: [
+  29       &quot;git&quot;,
+  30       &quot;codereview&quot;
+  31     ],
+  32     &quot;author&quot;: &quot;wusen&quot;,
+  33     &quot;license&quot;: &quot;MIT&quot;
+  34   }</pre><!--blockquote --></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="collapse_title_7" class="panel-title"><a data-toggle="collapse" aria-expanded="false" href="#collapse_7" data-parent="#fileList">/Users/wusen/code/github/Codelinter/test/style.css</a>&nbsp;<span style="float:right;">&nbsp;<span class="text-warning"><span class="glyphicon glyphicon-exclamation-sign"></span><span> 8</span></span></span></h3></div><div id="collapse_7" class="panel-collapse collapse in"><div class="panel-body"><p><a href="homepage/blob/branchName//Users/wusen/code/github/Codelinter/test/style.css" target="_blank">[在git中查看文件]</a></p><div><div class="alert alert-warning"><span class="glyphicon glyphicon-exclamation-sign"></span><span> line 2 【All】：Use of !important</span></div><pre>1   .aaa-bbb-ccc{
+2     border: 1px solid red !important;
+3   }
+4   .aaBbbCc{
+5     color: red;
+6     top: 10px;</pre><!--blockquote --></div><div><div class="alert alert-warning"><span class="glyphicon glyphicon-exclamation-sign"></span><span> line 4 【All】：Rule doesn't have all its properties in alphabetical order.</span></div><pre>2     border: 1px solid red !important;
+3   }
+4   .aaBbbCc{
+5     color: red;
+6     top: 10px;
+7     fontsize: 3rem;
+8     display: inline-block;</pre><!--blockquote --></div><div><div class="alert alert-warning"><span class="glyphicon glyphicon-exclamation-sign"></span><span> line 7 【All】：Unknown property 'fontsize'.</span></div><pre> 5     color: red;
+ 6     top: 10px;
+ 7     fontsize: 3rem;
+ 8     display: inline-block;
+ 9     -webkit-transform: '';
+10     xxxx: bbb
+11   }</pre><!--blockquote --></div><div><div class="alert alert-warning"><span class="glyphicon glyphicon-exclamation-sign"></span><span> line 9 【All】：The property -moz-transform is compatible with -webkit-transform and should be included as well.</span></div><pre> 7     fontsize: 3rem;
+ 8     display: inline-block;
+ 9     -webkit-transform: '';
+10     xxxx: bbb
+11   }</pre><!--blockquote --></div><div><div class="alert alert-warning"><span class="glyphicon glyphicon-exclamation-sign"></span><span> line 9 【All】：The property -ms-transform is compatible with -webkit-transform and should be included as well.</span></div><pre> 7     fontsize: 3rem;
+ 8     display: inline-block;
+ 9     -webkit-transform: '';
+10     xxxx: bbb
+11   }</pre><!--blockquote --></div><div><div class="alert alert-warning"><span class="glyphicon glyphicon-exclamation-sign"></span><span> line 9 【All】：The property -o-transform is compatible with -webkit-transform and should be included as well.</span></div><pre> 7     fontsize: 3rem;
+ 8     display: inline-block;
+ 9     -webkit-transform: '';
+10     xxxx: bbb
+11   }</pre><!--blockquote --></div><div><div class="alert alert-warning"><span class="glyphicon glyphicon-exclamation-sign"></span><span> line 9 【All】：Missing standard property 'transform' to go along with '-webkit-transform'.</span></div><pre> 7     fontsize: 3rem;
+ 8     display: inline-block;
+ 9     -webkit-transform: '';
+10     xxxx: bbb
+11   }</pre><!--blockquote --></div><div><div class="alert alert-warning"><span class="glyphicon glyphicon-exclamation-sign"></span><span> line 10 【All】：Unknown property 'xxxx'.</span></div><pre> 8     display: inline-block;
+ 9     -webkit-transform: '';
+10     xxxx: bbb
+11   }</pre><!--blockquote --></div></div></div></div></div></div></div></div><script src="/commit.js"></script></body>

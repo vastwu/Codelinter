@@ -22,7 +22,9 @@ GitHelper.conf 'TOKEN', 'WX3V4h-gLxnxEVfxLZC-'
 app = express()
 app.set 'view engine', 'jade'
 app.set 'views', Path.join(__dirname, '/view')
-app.use serveStatic(Path.join(__dirname, '../client'))
+
+app.set 'static_dir', Path.join(__dirname, '../client')
+app.use serveStatic(app.get('static_dir'))
 
 app.use bodyParser.json()
 app.all '/git', require('./git')
