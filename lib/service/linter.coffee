@@ -80,6 +80,20 @@ module.exports = (code, extname)->
         errors = coffeelint.lint code,
           max_line_length:
             value: 200
+          no_throwing_strings:
+            level: 'ignore'
+          no_this:
+            level: 'warn'
+          no_unnecessary_double_quotes:
+            level: 'warn'
+          space_operators:
+            level: 'warn'
+          braces_spacing:
+            level: 'warn'
+          no_debugger:
+            level: 'error'
+          no_interpolation_in_single_quotes:
+            level: 'error'
       when '.js'
         linter = jslinter.load()
         linted = jslinter.linter.doLint linter, code,
